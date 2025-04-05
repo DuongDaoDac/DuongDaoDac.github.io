@@ -146,6 +146,79 @@
             color: white;
             font-size: 14px;
         }
+/* Giỏ hàng popup */
+   #cart {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        #checkout-form input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+    /* Momo */
+    #momo {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #momo img {
+      width: 300px;  /* Tăng kích thước logo Momo */
+      height: auto;
+    }
+    #momo p {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    #momo .qr-code {
+      width: 400px; /* Tăng kích thước mã QR */
+      height: auto;
+    }
+
     </style>
 </head>
 <h1>Cửa hàng bán laptop giá rẻ</h1>
@@ -228,12 +301,14 @@
                     <h3>Laptop Dell Inspiron 15 3520 i5 1235U</h3>
                     <p class="price">15.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Laptop Dell Inspiron 15 3520', 15000000)">Thêm vào giỏ</button>
                 </div>
                 <div class="product-item">
                     <img src="https://i.imgur.com/T9u1Mxy.jpeg" alt="Laptop Dell 2">
                     <h3>Laptop Dell Inspiron 14 5430 i7 1360P/16GB/1TB/OfficeHS/Win11 (20DY31)</h3>
                     <p class="price">18.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Laptop Dell Inspiron 14 5430', 18000000)">Thêm vào giỏ</button>
                 </div>
             </div>
         </section>
@@ -246,12 +321,14 @@
                     <h3>Laptop Asus Gaming Vivobook K3605ZF i5 12500H/16GB/512GB/4GB RTX2050/Win11 (RP745W)</h3>
                     <p class="price">16.500.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+		    <button onclick="addToCart('Laptop Asus Gaming Vivobook K3605ZF', 16500000)">Thêm vào giỏ</button>	
                 </div>
                 <div class="product-item">
                     <img src="https://i.imgur.com/zqqyCOM.jpeg" alt="Laptop Asus 2">
                     <h3>Laptop Asus TUF Gaming A15 FA506NCR R7 7435HS/16GB/512GB/4GB RTX3050/144Hz/Win11 (HN097W)</h3>
                     <p class="price">20.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+		    <button onclick="addToCart('Laptop Asus TUF Gaming A15 FA506NCR', 20000000)">Thêm vào giỏ</button>
                 </div>
             </div>
         </section>
@@ -264,12 +341,14 @@
                     <h3>Lenovo ThinkPad X1 Carbon Gen 9 - Core i5 1135G7, 32GB, 256GB, FHD+ Touch - Đen - Used, Nhập khẩu</h3>
                     <p class="price">14.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Lenovo ThinkPad X1 Carbon Gen 9', 14000000)">Thêm vào giỏ</button>
                 </div>
                 <div class="product-item">
                     <img src="https://i.imgur.com/lnam89q.jpeg" alt="Laptop Lenovo 2">
                     <h3>Lenovo ThinkBook 14 G5+ - i5 13500H, 2.8K 16GB, 1TB - Storm Grey - Mới, Sealed, Nhập khẩu</h3>
                     <p class="price">17.500.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Lenovo ThinkBook 14 G5+', 17500000)">Thêm vào giỏ</button>
                 </div>
             </div>
         </section>
@@ -280,14 +359,16 @@
                 <div class="product-item">
                     <img src="https://i.imgur.com/SD0m0b0.jpeg" alt="Laptop Apple 1">
                     <h3>MacBook Air 13 inch</h3>
-                    <p class="price">25.000.000 VNĐ</p>
+                    <p class="price">25.500.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('MacBook Air 13 inch', 25500000)">Thêm vào giỏ</button>                
                 </div>
                 <div class="product-item">
                     <img src="https://i.imgur.com/FygoWZp.png" alt="Laptop Apple 2">
                     <h3>MacBook Pro 14 inch</h3>
                     <p class="price">30.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('MacBook Pro 14 inch', 30000000)">Thêm vào giỏ</button>
                 </div>
             </div>
         </section>
@@ -300,12 +381,14 @@
                     <h3>Laptop Aspire Lite 15 | AL15-51M-55NB</h3>
                     <p class="price">13.500.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Laptop Aspire Lite 15', 13500000)">Thêm vào giỏ</button>
                 </div>
                 <div class="product-item">
                     <img src="https://i.imgur.com/4sJeG3H.png" alt="Laptop Acer 2">
                     <h3>Laptop Aspire 15 | A15-51P-53T8</h3>
                     <p class="price">16.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Laptop Aspire 15', 16000000)">Thêm vào giỏ</button>
                 </div>
             </div>
         </section>
@@ -318,19 +401,178 @@
                     <h3>Samsung Galaxy Book</h3>
                     <p class="price">19.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Samsung Galaxy Book', 1900000)">Thêm vào giỏ</button>
                 </div>
                 <div class="product-item">
                     <img src="https://cdn.tgdd.vn/Products/Images/44/328598/Slider/vi-vn-samsung-galaxy-chromebook-go-xe340xda-n4500-slider-1.jpg" alt="Laptop Samsung 2">
                     <h3>Laptop Samsung Galaxy Chromebook Go XE340XDA N4500/4GB/32GB/ChromeOS</h3>
                     <p class="price">22.000.000 VNĐ</p>
                     <a href="#">Xem chi tiết</a>
+                    <button onclick="addToCart('Laptop Samsung Galaxy Chromebook Go XE340XDA N4500', 2200000)">Thêm vào giỏ</button>
                 </div>
             </div>
-        </section>
+       
+ <!-- Giỏ hàng -->
+        <div id="cart" onclick="showCart()">
+            🛒 <span id="cart-count">0</span>
+        </div>
+
+        <!-- Modal Giỏ hàng -->
+        <div id="cart-modal">
+            <div class="modal-content">
+                <h2>Giỏ hàng của bạn</h2>
+                <div id="cart-items"></div>
+                <p id="total">Tổng: 0 VND</p>
+                
+                <div id="checkout">
+                    <h3>Thông tin thanh toán</h3>
+                    <form id="checkout-form" onsubmit="return validateForm()">
+                        <input type="text" placeholder="Họ và tên" required>
+                        <input type="tel" placeholder="Số điện thoại" required>
+                        <input type="text" placeholder="Địa chỉ nhận hàng" required>
+                        
+                        <h3>Thanh toán qua Momo</h3>
+                        <div id="momo">
+                            <img src="https://i.imgur.com/MBPCMkq.png" alt="Momo Logo">
+                            <p>Chuyển khoản đến số điện thoại Momo: <strong>0947678096</strong></p>
+                            <img class="qr-code" src="https://i.imgur.com/WrD5YEH.jpeg" alt="Mã QR Momo">
+                        </div>
+                        
+                        <button type="submit">Hoàn tất thanh toán</button>
+                        <button type="button" onclick="closeCart()">Đóng</button>
+                        <button type="button" onclick="clearCart()" style="background-color: #ff4444;">Xóa giỏ hàng</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification" id="notification">Đã thêm vào giỏ hàng!</div>
 
         <footer>
             <p>&copy; 2025 Cửa Hàng Laptop. All rights reserved.</p>
         </footer>
+    </div>
+
+    <script>
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
+
+        // Khởi tạo giỏ hàng
+        document.getElementById('cart-count').textContent = cartCount;
+        renderCart();
+
+        function showNotification() {
+            const noti = document.getElementById('notification');
+            noti.style.display = 'block';
+            setTimeout(() => noti.style.display = 'none', 2000);
+        }
+
+        function addToCart(name, price) {
+            const existingItem = cartItems.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({ name, price, quantity: 1 });
+            }
+            cartCount++;
+            updateLocalStorage();
+            renderCart();
+            showNotification();
+        }
+
+        function removeItem(index) {
+            cartCount -= cartItems[index].quantity;
+            cartItems.splice(index, 1);
+            updateLocalStorage();
+            renderCart();
+        }
+
+        function clearCart() {
+            cartItems = [];
+            cartCount = 0;
+            updateLocalStorage();
+            renderCart();
+            closeCart();
+        }
+
+        function updateLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            localStorage.setItem('cartCount', cartCount.toString());
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const totalDiv = document.getElementById('total');
+            let total = 0;
+            
+            cartItemsDiv.innerHTML = '';
+            cartItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <div>
+                        <span>${item.name}</span>
+                        <div class="quantity-control">
+                            <button onclick="updateQuantity(${index}, 'decrease')">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 'increase')">+</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span>${(item.price * item.quantity).toLocaleString()} VND</span>
+                        <span class="remove-item" onclick="removeItem(${index})">✕</span>
+                    </div>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price * item.quantity;
+            });
+            
+            totalDiv.textContent = `Tổng: ${total.toLocaleString()} VND`;
+        }
+
+        function updateQuantity(index, action) {
+            if (action === 'increase') {
+                cartItems[index].quantity += 1;
+                cartCount++;
+            } else if (action === 'decrease' && cartItems[index].quantity > 1) {
+                cartItems[index].quantity -= 1;
+                cartCount--;
+            }
+            updateLocalStorage();
+            renderCart();
+        }
+
+        function validateForm() {
+            const inputs = document.querySelectorAll('#checkout-form input[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff4444';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+
+            if (isValid) {
+                alert('Đơn hàng của bạn đã được tiếp nhận! Chúng tôi sẽ liên hệ xác nhận trong 5 phút.');
+                clearCart();
+                return false; // Prevent form submission
+            }
+            return false;
+        }
+
+        // Các hàm hiển thị/đóng giỏ hàng giữ nguyên
+        function showCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+    </script>
 
   <!-- Giao diện Đăng Ký/Đăng Nhập -->
   <div class="auth-floating">
@@ -381,7 +623,24 @@
         Đã có tài khoản? <a id="show-login-form">Đăng nhập ngay</a>
       </div>
     </div>
-  </div>
+
+  // Đăng nhập
+  function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (username === '' || password === '') {
+      alert('Vui lòng điền đầy đủ thông tin');
+    } else {
+      alert(`Chào mừng ${username}! Đăng nhập thành công.`);
+      document.getElementById('login-register').style.display = 'none';
+    }
+  }
+
+  // Chuyển sang giao diện đăng ký
+  function toggleRegister() {
+    alert('Chức năng đăng ký sẽ sớm có!');
+  }
 
   <script>
     const loginForm = document.getElementById("login-form");
