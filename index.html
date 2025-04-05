@@ -148,6 +148,50 @@
         }
     </style>
 </head>
+<h1>Cửa hàng bán laptop giá rẻ</h1>
+</header>
+
+<main>
+    <p>Chào mừng bạn đến với cửa hàng của chúng tôi! Hãy khám phá các sản phẩm mới nhất.</p>
+
+    <!-- Địa chỉ cửa hàng & Google Map -->
+    <div id="store-info">
+        <h3>📍 Địa chỉ cửa hàng:</h3>
+        <p>Chung cư số 1 Nghĩa Phát, Phường 6, Quận Tân Bình, TP Hồ Chí Minh</p>
+        
+        <button onclick="toggleMap()">Xem bản đồ</button>
+
+        <div id="map-container" style="display: none; max-width: 100%; margin: 0 auto;">
+            <iframe
+                src="https://www.google.com/maps?q=Chung%20Cư%20Số%201%20Nghĩa%20Phát,%20Phường%206,%20Quận%20Tân%20Bình,%20TP%20Hồ%20Chí%20Minh&output=embed"
+                width="100%" height="300" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <!-- Nút gọi / Zalo / Chat -->
+        <div class="contact-links">
+            <a class="call" href="tel:0947678096">📞 Gọi ngay: 0947 678 096</a><br>
+            <a class="zalo" href="https://zalo.me/0947678096" target="_blank">💬 Chat Zalo</a><br>
+            <a class="email" href="mailto:dathdk10@gmail.com">✉ Gửi Email</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Cửa hàng bán laptop. All rights reserved.</p>
+</footer>
+
+<script>
+    function toggleMap() {
+        const map = document.getElementById("map-container");
+        if (map.style.display === "none") {
+            map.style.display = "block";
+        } else {
+            map.style.display = "none";
+        }
+    }
+</script>
 <body>
     <div class="container">
         <header>
@@ -287,6 +331,118 @@
         <footer>
             <p>&copy; 2025 Cửa Hàng Laptop. All rights reserved.</p>
         </footer>
+
+  <!-- Giao diện Đăng Ký/Đăng Nhập -->
+  <div class="auth-floating">
+    <div class="auth-container">
+      <h2>Đăng Nhập</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="login-btn">Đăng Nhập</button>
+        </div>
+        <div class="error-message" id="loginErrorMessage"></div>
+      </form>
+      <div class="switch-form">
+        Chưa có tài khoản? <a id="show-register-form">Đăng ký ngay</a>
+      </div>
+
+      <h2 style="display: none;">Đăng Ký Tài Khoản</h2>
+      <form id="register-form" style="display: none;">
+        <div class="form-group">
+          <label for="regUsername">Tên đăng nhập:</label>
+          <input type="text" id="regUsername" name="regUsername" required />
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email:</label>
+          <input type="email" id="regEmail" name="regEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Mật khẩu:</label>
+          <input type="password" id="regPassword" name="regPassword" required />
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Xác nhận mật khẩu:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="register-btn">Đăng Ký</button>
+        </div>
+        <div class="error-message" id="registerErrorMessage"></div>
+      </form>
+      <div class="switch-form" style="display: none;">
+        Đã có tài khoản? <a id="show-login-form">Đăng nhập ngay</a>
+      </div>
     </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("login-form");
+    const registerForm = document.getElementById("register-form");
+    const showRegisterFormLink = document.getElementById("show-register-form");
+    const showLoginFormLink = document.getElementById("show-login-form");
+    const loginTitle = loginForm.previousElementSibling;
+    const registerTitle = registerForm.previousElementSibling;
+    const loginSwitch = loginForm.nextElementSibling;
+    const registerSwitch = registerForm.nextElementSibling;
+
+    showRegisterFormLink.addEventListener("click", () => {
+      loginForm.style.display = "none";
+      loginTitle.style.display = "none";
+      loginSwitch.style.display = "none";
+
+      registerForm.style.display = "block";
+      registerTitle.style.display = "block";
+      registerSwitch.style.display = "block";
+      document.querySelector(".auth-container h2").textContent =
+        "Đăng Ký Tài Khoản";
+    });
+
+    showLoginFormLink.addEventListener("click", () => {
+      registerForm.style.display = "none";
+      registerTitle.style.display = "none";
+      registerSwitch.style.display = "none";
+
+      loginForm.style.display = "block";
+      loginTitle.style.display = "block";
+      loginSwitch.style.display = "block";
+      document.querySelector(".auth-container h2").textContent = "Đăng Nhập";
+    });
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const errorMessage = document.getElementById("loginErrorMessage");
+
+      console.log("Thông tin đăng nhập:", { username, password });
+      alert("Đăng nhập (giao diện)! Bạn cần backend để xử lý thực tế.");
+    });
+
+    registerForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const username = document.getElementById("regUsername").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword =
+        document.getElementById("confirmPassword").value;
+      const errorMessage = document.getElementById("registerErrorMessage");
+
+      if (password !== confirmPassword) {
+        errorMessage.textContent = "Mật khẩu không khớp.";
+        return;
+      }
+
+      console.log("Thông tin đăng ký:", { username, email, password });
+      alert("Đăng ký (giao diện)! Bạn cần backend để xử lý thực tế.");
+    });
+  </script>
 </body>
 </html>
