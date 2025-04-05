@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ Laptop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #eee;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .slider {
+            margin-bottom: 20px;
+            /* Thêm CSS cho slider nếu bạn có */
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-section {
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .product-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .product-item .price {
+            color: #dc3545;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-item a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .product-item a:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="#">Laptop Store</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Dell</a></li>
+                    <li><a href="#">Asus</a></li>
+                    <li><a href="#">Lenovo</a></li>
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Acer</a></li>
+                    <li><a href="#">Samsung</a></li>
+                    <li><a href="#">Phụ kiện</a></li>
+                    <li><a href="#">Khuyến mãi</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm laptop...">
+                <button type="submit">Tìm</button>
+            </div>
+        </header>
+
+        <div class="slider">
+            <img src="https://i.imgur.com/w6wKBnD.png" alt="Banner Quảng Cáo Laptop" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        </div>
+
+        <section class="product-section">
+            <h2>Laptop Dell</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.imgur.com/T9u1Mxy.jpeg" alt="Laptop Dell Inspiron 15 3520 i5 1235U">
+                    <h3>Laptop Dell Inspiron 15 3520 i5 1235U</h3>
+                    <p class="price">15.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.imgur.com/T9u1Mxy.jpeg" alt="Laptop Dell 2">
+                    <h3>Laptop Dell Inspiron 14 5430 i7 1360P/16GB/1TB/OfficeHS/Win11 (20DY31)</h3>
+                    <p class="price">18.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>Laptop Asus</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.imgur.com/JBUoU8r.jpeg" alt="Laptop Asus 1">
+                    <h3>Laptop Asus Gaming Vivobook K3605ZF i5 12500H/16GB/512GB/4GB RTX2050/Win11 (RP745W)</h3>
+                    <p class="price">16.500.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.imgur.com/zqqyCOM.jpeg" alt="Laptop Asus 2">
+                    <h3>Laptop Asus TUF Gaming A15 FA506NCR R7 7435HS/16GB/512GB/4GB RTX3050/144Hz/Win11 (HN097W)</h3>
+                    <p class="price">20.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>Laptop Lenovo</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.imgur.com/viyEQIv.jpeg" alt="Laptop Lenovo 1">
+                    <h3>Lenovo ThinkPad X1 Carbon Gen 9 - Core i5 1135G7, 32GB, 256GB, FHD+ Touch - Đen - Used, Nhập khẩu</h3>
+                    <p class="price">14.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.imgur.com/lnam89q.jpeg" alt="Laptop Lenovo 2">
+                    <h3>Lenovo ThinkBook 14 G5+ - i5 13500H, 2.8K 16GB, 1TB - Storm Grey - Mới, Sealed, Nhập khẩu</h3>
+                    <p class="price">17.500.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>Laptop Apple</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.imgur.com/SD0m0b0.jpeg" alt="Laptop Apple 1">
+                    <h3>MacBook Air 13 inch</h3>
+                    <p class="price">25.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.imgur.com/FygoWZp.png" alt="Laptop Apple 2">
+                    <h3>MacBook Pro 14 inch</h3>
+                    <p class="price">30.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>Laptop Acer</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://i.imgur.com/FvqxjnN.jpeg" alt="Laptop Acer 1">
+                    <h3>Laptop Aspire Lite 15 | AL15-51M-55NB</h3>
+                    <p class="price">13.500.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://i.imgur.com/4sJeG3H.png" alt="Laptop Acer 2">
+                    <h3>Laptop Aspire 15 | A15-51P-53T8</h3>
+                    <p class="price">16.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <h2>Laptop Samsung</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/l/a/laptop-samsung-galaxy-book_1.jpg" alt="Laptop Samsung 1">
+                    <h3>Samsung Galaxy Book</h3>
+                    <p class="price">19.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="https://cdn.tgdd.vn/Products/Images/44/328598/Slider/vi-vn-samsung-galaxy-chromebook-go-xe340xda-n4500-slider-1.jpg" alt="Laptop Samsung 2">
+                    <h3>Laptop Samsung Galaxy Chromebook Go XE340XDA N4500/4GB/32GB/ChromeOS</h3>
+                    <p class="price">22.000.000 VNĐ</p>
+                    <a href="#">Xem chi tiết</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Cửa Hàng Laptop. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
