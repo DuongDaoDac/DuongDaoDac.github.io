@@ -1,707 +1,378 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ Laptop</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            width: 90%;
-            margin: 0 auto;
-            max-width: 1200px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 20px;
-        }
-
-        .logo a {
-            text-decoration: none;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #555;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        nav ul li a:hover {
-            background-color: #eee;
-        }
-
-        .search-bar input[type="text"] {
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .search-bar button {
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .slider {
-            margin-bottom: 20px;
-            /* Thêm CSS cho slider nếu bạn có */
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .product-section {
-            margin-bottom: 30px;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .product-section h2 {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .product-item {
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-
-        .product-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .product-item h3 {
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .product-item .price {
-            color: #dc3545;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .product-item a {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .product-item a:hover {
-            background-color: #218838;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #333;
-            color: white;
-            font-size: 14px;
-        }
-/* Giỏ hàng popup */
-   #cart {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .remove-item {
-            color: #ff4444;
-            cursor: pointer;
-            margin-left: 15px;
-        }
-
-        #checkout-form input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #28a745;
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            display: none;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-
-    /* Momo */
-    #momo {
-      text-align: center;
-      margin-top: 20px;
-    }
-    #momo img {
-      width: 300px;  /* Tăng kích thước logo Momo */
-      height: auto;
-    }
-    #momo p {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    #momo .qr-code {
-      width: 400px; /* Tăng kích thước mã QR */
-      height: auto;
-    }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cửa Hàng Laptop Chính Hãng</title>
+  <!-- Tailwind CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Các trang của SPA: chỉ hiển thị trang có class .active */
+    .page { display: none; }
+    .page.active { display: block; }
+    /* Nút Xóa sản phẩm chỉ hiển thị với admin đã đăng nhập (thêm class admin-logged cho body) */
+    .admin-delete { display: none; }
+    body.admin-logged .admin-delete { display: inline-block; }
+  </style>
 </head>
-<h1>Cửa hàng bán laptop giá rẻ</h1>
-</header>
+<body class="bg-gray-50">
 
-<main>
-    <p>Chào mừng bạn đến với cửa hàng của chúng tôi! Hãy khám phá các sản phẩm mới nhất.</p>
+  <!-- HEADER: Banner, quảng cáo và thông tin cửa hàng -->
+  <header class="bg-blue-600 text-white p-4 rounded-b-lg shadow-md">
+    <h1 class="text-3xl font-bold text-center">Cửa Hàng Laptop Chính Hãng</h1>
+    <p class="text-center mt-1">Địa chỉ: Chung cư số 1 Nghĩa Phát, Phường 6, Quận Tân Bình, TP Hồ Chí Minh</p>
+    <p class="text-center">Zalo: <a href="https://zalo.me/0947678096" class="text-yellow-300">0947678096</a></p>
+  </header>
 
-    <!-- Địa chỉ cửa hàng & Google Map -->
-    <div id="store-info">
-        <h3>📍 Địa chỉ cửa hàng:</h3>
-        <p>Chung cư số 1 Nghĩa Phát, Phường 6, Quận Tân Bình, TP Hồ Chí Minh</p>
-        
-        <button onclick="toggleMap()">Xem bản đồ</button>
+  <!-- MENU: Điều hướng trang -->
+  <nav class="bg-white shadow-md p-4 flex flex-wrap justify-center gap-4 mt-4">
+    <a href="#" onclick="showPage('home-page');" class="text-blue-700 font-semibold">Trang chủ</a>
+    <a href="#" onclick="showPage('home-page'); filterProductsByType('laptop');" class="text-blue-700 font-semibold">Laptop</a>
+    <a href="#" onclick="showPage('home-page'); filterProductsByType('accessory');" class="text-blue-700 font-semibold">Phụ kiện</a>
+    <a href="#" onclick="showPage('cart-page');" class="text-blue-700 font-semibold">Giỏ hàng (<span id="cart-count">0</span>)</a>
+    <a href="#" onclick="showPage('register-page');" class="text-blue-700 font-semibold">Đăng ký</a>
+    <a href="#" onclick="showPage('contact-page');" class="text-blue-700 font-semibold">Liên hệ</a>
+    <a href="#" onclick="showPage('admin-page');" class="text-red-600 font-semibold">Admin</a>
+  </nav>
 
-        <div id="map-container" style="display: none; max-width: 100%; margin: 0 auto;">
-            <iframe
-                src="https://www.google.com/maps?q=Chung%20Cư%20Số%201%20Nghĩa%20Phát,%20Phường%206,%20Quận%20Tân%20Bình,%20TP%20Hồ%20Chí%20Minh&output=embed"
-                width="100%" height="300" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-
-        <!-- Nút gọi / Zalo / Chat -->
-        <div class="contact-links">
-            <a class="call" href="tel:0947678096">📞 Gọi ngay: 0947 678 096</a><br>
-            <a class="zalo" href="https://zalo.me/0947678096" target="_blank">💬 Chat Zalo</a><br>
-            <a class="email" href="mailto:dathdk10@gmail.com">✉ Gửi Email</a>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <p>&copy; 2025 Cửa hàng bán laptop. All rights reserved.</p>
-</footer>
-
-<script>
-    function toggleMap() {
-        const map = document.getElementById("map-container");
-        if (map.style.display === "none") {
-            map.style.display = "block";
-        } else {
-            map.style.display = "none";
-        }
-    }
-</script>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <a href="#">Laptop Store</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Dell</a></li>
-                    <li><a href="#">Asus</a></li>
-                    <li><a href="#">Lenovo</a></li>
-                    <li><a href="#">Apple</a></li>
-                    <li><a href="#">Acer</a></li>
-                    <li><a href="#">Samsung</a></li>
-                    <li><a href="#">Phụ kiện</a></li>
-                    <li><a href="#">Khuyến mãi</a></li>
-                </ul>
-            </nav>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm laptop...">
-                <button type="submit">Tìm</button>
-            </div>
-        </header>
-
-        <div class="slider">
-            <img src="https://i.imgur.com/w6wKBnD.png" alt="Banner Quảng Cáo Laptop" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-        </div>
-
-        <section class="product-section">
-            <h2>Laptop Dell</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://i.imgur.com/T9u1Mxy.jpeg" alt="Laptop Dell Inspiron 15 3520 i5 1235U">
-                    <h3>Laptop Dell Inspiron 15 3520 i5 1235U</h3>
-                    <p class="price">15.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Laptop Dell Inspiron 15 3520', 15000000)">Thêm vào giỏ</button>
-                </div>
-                <div class="product-item">
-                    <img src="https://i.imgur.com/T9u1Mxy.jpeg" alt="Laptop Dell 2">
-                    <h3>Laptop Dell Inspiron 14 5430 i7 1360P/16GB/1TB/OfficeHS/Win11 (20DY31)</h3>
-                    <p class="price">18.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Laptop Dell Inspiron 14 5430', 18000000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-section">
-            <h2>Laptop Asus</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://i.imgur.com/JBUoU8r.jpeg" alt="Laptop Asus 1">
-                    <h3>Laptop Asus Gaming Vivobook K3605ZF i5 12500H/16GB/512GB/4GB RTX2050/Win11 (RP745W)</h3>
-                    <p class="price">16.500.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-		    <button onclick="addToCart('Laptop Asus Gaming Vivobook K3605ZF', 16500000)">Thêm vào giỏ</button>	
-                </div>
-                <div class="product-item">
-                    <img src="https://i.imgur.com/zqqyCOM.jpeg" alt="Laptop Asus 2">
-                    <h3>Laptop Asus TUF Gaming A15 FA506NCR R7 7435HS/16GB/512GB/4GB RTX3050/144Hz/Win11 (HN097W)</h3>
-                    <p class="price">20.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-		    <button onclick="addToCart('Laptop Asus TUF Gaming A15 FA506NCR', 20000000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-section">
-            <h2>Laptop Lenovo</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://i.imgur.com/viyEQIv.jpeg" alt="Laptop Lenovo 1">
-                    <h3>Lenovo ThinkPad X1 Carbon Gen 9 - Core i5 1135G7, 32GB, 256GB, FHD+ Touch - Đen - Used, Nhập khẩu</h3>
-                    <p class="price">14.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Lenovo ThinkPad X1 Carbon Gen 9', 14000000)">Thêm vào giỏ</button>
-                </div>
-                <div class="product-item">
-                    <img src="https://i.imgur.com/lnam89q.jpeg" alt="Laptop Lenovo 2">
-                    <h3>Lenovo ThinkBook 14 G5+ - i5 13500H, 2.8K 16GB, 1TB - Storm Grey - Mới, Sealed, Nhập khẩu</h3>
-                    <p class="price">17.500.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Lenovo ThinkBook 14 G5+', 17500000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-section">
-            <h2>Laptop Apple</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://i.imgur.com/SD0m0b0.jpeg" alt="Laptop Apple 1">
-                    <h3>MacBook Air 13 inch</h3>
-                    <p class="price">25.500.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('MacBook Air 13 inch', 25500000)">Thêm vào giỏ</button>                
-                </div>
-                <div class="product-item">
-                    <img src="https://i.imgur.com/FygoWZp.png" alt="Laptop Apple 2">
-                    <h3>MacBook Pro 14 inch</h3>
-                    <p class="price">30.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('MacBook Pro 14 inch', 30000000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-section">
-            <h2>Laptop Acer</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://i.imgur.com/FvqxjnN.jpeg" alt="Laptop Acer 1">
-                    <h3>Laptop Aspire Lite 15 | AL15-51M-55NB</h3>
-                    <p class="price">13.500.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Laptop Aspire Lite 15', 13500000)">Thêm vào giỏ</button>
-                </div>
-                <div class="product-item">
-                    <img src="https://i.imgur.com/4sJeG3H.png" alt="Laptop Acer 2">
-                    <h3>Laptop Aspire 15 | A15-51P-53T8</h3>
-                    <p class="price">16.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Laptop Aspire 15', 16000000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="product-section">
-            <h2>Laptop Samsung</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/l/a/laptop-samsung-galaxy-book_1.jpg" alt="Laptop Samsung 1">
-                    <h3>Samsung Galaxy Book</h3>
-                    <p class="price">19.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Samsung Galaxy Book', 1900000)">Thêm vào giỏ</button>
-                </div>
-                <div class="product-item">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/328598/Slider/vi-vn-samsung-galaxy-chromebook-go-xe340xda-n4500-slider-1.jpg" alt="Laptop Samsung 2">
-                    <h3>Laptop Samsung Galaxy Chromebook Go XE340XDA N4500/4GB/32GB/ChromeOS</h3>
-                    <p class="price">22.000.000 VNĐ</p>
-                    <a href="#">Xem chi tiết</a>
-                    <button onclick="addToCart('Laptop Samsung Galaxy Chromebook Go XE340XDA N4500', 2200000)">Thêm vào giỏ</button>
-                </div>
-            </div>
-       
- <!-- Giỏ hàng -->
-        <div id="cart" onclick="showCart()">
-            🛒 <span id="cart-count">0</span>
-        </div>
-
-        <!-- Modal Giỏ hàng -->
-        <div id="cart-modal">
-            <div class="modal-content">
-                <h2>Giỏ hàng của bạn</h2>
-                <div id="cart-items"></div>
-                <p id="total">Tổng: 0 VND</p>
-                
-                <div id="checkout">
-                    <h3>Thông tin thanh toán</h3>
-                    <form id="checkout-form" onsubmit="return validateForm()">
-                        <input type="text" placeholder="Họ và tên" required>
-                        <input type="tel" placeholder="Số điện thoại" required>
-                        <input type="text" placeholder="Địa chỉ nhận hàng" required>
-                        
-                        <h3>Thanh toán qua Momo</h3>
-                        <div id="momo">
-                            <img src="https://i.imgur.com/MBPCMkq.png" alt="Momo Logo">
-                            <p>Chuyển khoản đến số điện thoại Momo: <strong>0947678096</strong></p>
-                            <img class="qr-code" src="https://i.imgur.com/WrD5YEH.jpeg" alt="Mã QR Momo">
-                        </div>
-                        
-                        <button type="submit">Hoàn tất thanh toán</button>
-                        <button type="button" onclick="closeCart()">Đóng</button>
-                        <button type="button" onclick="clearCart()" style="background-color: #ff4444;">Xóa giỏ hàng</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="notification" id="notification">Đã thêm vào giỏ hàng!</div>
-
-        <footer>
-            <p>&copy; 2025 Cửa Hàng Laptop. All rights reserved.</p>
-        </footer>
-    </div>
-
-    <script>
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        let cartCount = parseInt(localStorage.getItem('cartCount')) || 0;
-
-        // Khởi tạo giỏ hàng
-        document.getElementById('cart-count').textContent = cartCount;
-        renderCart();
-
-        function showNotification() {
-            const noti = document.getElementById('notification');
-            noti.style.display = 'block';
-            setTimeout(() => noti.style.display = 'none', 2000);
-        }
-
-        function addToCart(name, price) {
-            const existingItem = cartItems.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cartItems.push({ name, price, quantity: 1 });
-            }
-            cartCount++;
-            updateLocalStorage();
-            renderCart();
-            showNotification();
-        }
-
-        function removeItem(index) {
-            cartCount -= cartItems[index].quantity;
-            cartItems.splice(index, 1);
-            updateLocalStorage();
-            renderCart();
-        }
-
-        function clearCart() {
-            cartItems = [];
-            cartCount = 0;
-            updateLocalStorage();
-            renderCart();
-            closeCart();
-        }
-
-        function updateLocalStorage() {
-            localStorage.setItem('cart', JSON.stringify(cartItems));
-            localStorage.setItem('cartCount', cartCount.toString());
-            document.getElementById('cart-count').textContent = cartCount;
-        }
-
-        function renderCart() {
-            const cartItemsDiv = document.getElementById('cart-items');
-            const totalDiv = document.getElementById('total');
-            let total = 0;
-            
-            cartItemsDiv.innerHTML = '';
-            cartItems.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.innerHTML = `
-                    <div>
-                        <span>${item.name}</span>
-                        <div class="quantity-control">
-                            <button onclick="updateQuantity(${index}, 'decrease')">-</button>
-                            <span>${item.quantity}</span>
-                            <button onclick="updateQuantity(${index}, 'increase')">+</button>
-                        </div>
-                    </div>
-                    <div>
-                        <span>${(item.price * item.quantity).toLocaleString()} VND</span>
-                        <span class="remove-item" onclick="removeItem(${index})">✕</span>
-                    </div>
-                `;
-                cartItemsDiv.appendChild(itemDiv);
-                total += item.price * item.quantity;
-            });
-            
-            totalDiv.textContent = `Tổng: ${total.toLocaleString()} VND`;
-        }
-
-        function updateQuantity(index, action) {
-            if (action === 'increase') {
-                cartItems[index].quantity += 1;
-                cartCount++;
-            } else if (action === 'decrease' && cartItems[index].quantity > 1) {
-                cartItems[index].quantity -= 1;
-                cartCount--;
-            }
-            updateLocalStorage();
-            renderCart();
-        }
-
-        function validateForm() {
-            const inputs = document.querySelectorAll('#checkout-form input[required]');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#ff4444';
-                } else {
-                    input.style.borderColor = '#ddd';
-                }
-            });
-
-            if (isValid) {
-                alert('Đơn hàng của bạn đã được tiếp nhận! Chúng tôi sẽ liên hệ xác nhận trong 5 phút.');
-                clearCart();
-                return false; // Prevent form submission
-            }
-            return false;
-        }
-
-        // Các hàm hiển thị/đóng giỏ hàng giữ nguyên
-        function showCart() {
-            document.getElementById('cart-modal').style.display = 'flex';
-        }
-
-        function closeCart() {
-            document.getElementById('cart-modal').style.display = 'none';
-        }
-    </script>
-
-  <!-- Giao diện Đăng Ký/Đăng Nhập -->
-  <div class="auth-floating">
-    <div class="auth-container">
-      <h2>Đăng Nhập</h2>
-      <form id="login-form">
-        <div class="form-group">
-          <label for="username">Tên đăng nhập:</label>
-          <input type="text" id="username" name="username" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Mật khẩu:</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <div class="form-group">
-          <button type="submit" class="login-btn">Đăng Nhập</button>
-        </div>
-        <div class="error-message" id="loginErrorMessage"></div>
-      </form>
-      <div class="switch-form">
-        Chưa có tài khoản? <a id="show-register-form">Đăng ký ngay</a>
+  <!-- NỘI DUNG CHÍNH: Các trang con của SPA -->
+  <main class="p-4">
+    <!-- Trang Chủ: Quảng cáo, Tìm kiếm & Lọc, Danh sách sản phẩm -->
+    <section id="home-page" class="page active">
+      <!-- Quảng cáo -->
+      <div class="bg-yellow-200 p-4 text-center text-xl font-semibold rounded-lg mb-4">
+        Khuyến mãi cực sốc: Giảm giá tới 30% khi thanh toán qua QR Code hoặc thẻ tín dụng!
       </div>
-
-      <h2 style="display: none;">Đăng Ký Tài Khoản</h2>
-      <form id="register-form" style="display: none;">
-        <div class="form-group">
-          <label for="regUsername">Tên đăng nhập:</label>
-          <input type="text" id="regUsername" name="regUsername" required />
-        </div>
-        <div class="form-group">
-          <label for="regEmail">Email:</label>
-          <input type="email" id="regEmail" name="regEmail" required />
-        </div>
-        <div class="form-group">
-          <label for="regPassword">Mật khẩu:</label>
-          <input type="password" id="regPassword" name="regPassword" required />
-        </div>
-        <div class="form-group">
-          <label for="confirmPassword">Xác nhận mật khẩu:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required />
-        </div>
-        <div class="form-group">
-          <button type="submit" class="register-btn">Đăng Ký</button>
-        </div>
-        <div class="error-message" id="registerErrorMessage"></div>
-      </form>
-      <div class="switch-form" style="display: none;">
-        Đã có tài khoản? <a id="show-login-form">Đăng nhập ngay</a>
+      <!-- Tìm kiếm & Bộ lọc sản phẩm -->
+      <div class="mb-4 flex flex-wrap gap-4">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên sản phẩm..." class="p-2 border rounded flex-grow" onkeyup="filterProducts()">
+        <select id="brandFilter" class="p-2 border rounded" onchange="filterProducts()">
+          <option value="">Lọc theo hãng</option>
+          <option value="Asus">Asus</option>
+          <option value="Dell">Dell</option>
+          <option value="HP">HP</option>
+          <option value="Logitech">Logitech</option>
+          <option value="DareU">DareU</option>
+        </select>
+        <select id="typeFilter" class="p-2 border rounded" onchange="filterProducts()">
+          <option value="">Chọn loại sản phẩm</option>
+          <option value="laptop">Laptop</option>
+          <option value="accessory">Phụ kiện</option>
+        </select>
+        <button onclick="resetFilters()" class="bg-gray-600 text-white p-2 rounded">Hiển thị tất cả</button>
       </div>
-    </div>
+      <!-- Container danh sách sản phẩm -->
+      <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Các sản phẩm demo sẽ xuất hiện tại đây, đồng thời sản phẩm admin thêm cũng được chèn vào -->
+      </div>
+    </section>
 
-  // Đăng nhập
-  function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    <!-- Trang Giỏ hàng & Thanh toán -->
+    <section id="cart-page" class="page">
+      <h2 class="text-2xl font-bold mb-4">Giỏ hàng</h2>
+      <div id="cart-items" class="bg-white p-4 rounded shadow mb-4"></div>
+      <p class="font-bold">Tổng tiền: <span id="cart-total">0</span>đ</p>
+      <!-- Thanh toán: QR Code và Form thanh toán thẻ tín dụng -->
+      <div class="mt-6 p-4 bg-gray-100 rounded shadow">
+        <h3 class="text-xl font-semibold mb-2">Thanh toán qua Ngân hàng</h3>
+        <img src="https://i.imgur.com/WrD5YEH.jpeg" alt="QR Code Thanh toán" class="mb-2">
+        <p class="mb-2">Hoặc thanh toán qua Thẻ tín dụng:</p>
+        <div class="grid grid-cols-1 gap-2 max-w-md">
+          <input type="text" id="card-number" placeholder="Số thẻ tín dụng" class="p-2 border rounded">
+          <div class="flex gap-2">
+            <input type="text" id="card-exp" placeholder="Ngày hết hạn (MM/YY)" class="p-2 border rounded flex-grow">
+            <input type="text" id="card-cvv" placeholder="CVV" class="p-2 border rounded w-1/3">
+          </div>
+          <button class="bg-blue-600 text-white p-2 rounded" onclick="alert('Đang xử lý thanh toán demo!')">Thanh toán</button>
+        </div>
+      </div>
+    </section>
 
-    if (username === '' || password === '') {
-      alert('Vui lòng điền đầy đủ thông tin');
-    } else {
-      alert(`Chào mừng ${username}! Đăng nhập thành công.`);
-      document.getElementById('login-register').style.display = 'none';
-    }
-  }
+    <!-- Trang Đăng ký -->
+    <section id="register-page" class="page">
+      <h2 class="text-2xl font-bold mb-4">Đăng ký</h2>
+      <form class="grid gap-4 max-w-md">
+        <input type="text" placeholder="Họ tên" class="p-2 border rounded">
+        <input type="email" placeholder="Email" class="p-2 border rounded">
+        <input type="password" placeholder="Mật khẩu" class="p-2 border rounded">
+        <button type="submit" class="bg-blue-600 text-white p-2 rounded">Đăng ký</button>
+      </form>
+    </section>
 
-  // Chuyển sang giao diện đăng ký
-  function toggleRegister() {
-    alert('Chức năng đăng ký sẽ sớm có!');
-  }
+    <!-- Trang Liên hệ -->
+    <section id="contact-page" class="page">
+      <h2 class="text-2xl font-bold mb-4">Liên hệ</h2>
+      <div class="bg-white p-4 rounded shadow mb-4">
+        <p><strong>Zalo:</strong> <a href="https://zalo.me/0947678096" class="text-blue-600">0947678096</a></p>
+        <p><strong>Địa chỉ:</strong> Chung cư số 1 Nghĩa Phát, Phường 6, Quận Tân Bình, TP Hồ Chí Minh</p>
+      </div>
+      <div class="w-full mb-4">
+        <iframe src="https://www.google.com/maps?q=Chung%20c%C6%B0%20s%E1%BB%91%201%20Ngh%C4%A9a%20Ph%C3%A1t,%20Ph%C6%B0%E1%BB%9Dng%206,%20Qu%E1%BA%ADn%20T%C3%A2n%20B%C3%ACnh,%20TP%20H%E1%BB%93%20Ch%C3%AD%20Minh&output=embed" width="100%" height="300" style="border:0;"></iframe>
+      </div>
+      <form class="grid gap-4 max-w-md">
+        <input type="text" placeholder="Họ tên" class="p-2 border rounded">
+        <input type="email" placeholder="Email" class="p-2 border rounded">
+        <textarea placeholder="Nội dung liên hệ" rows="4" class="p-2 border rounded"></textarea>
+        <button type="submit" class="bg-blue-600 text-white p-2 rounded">Gửi</button>
+      </form>
+    </section>
 
+    <!-- Trang Admin: Đăng nhập và Thêm sản phẩm -->
+    <section id="admin-page" class="page bg-gray-100 p-4">
+      <h2 class="text-2xl font-bold mb-4">Admin</h2>
+      <!-- Form đăng nhập Admin (demo: username=admin, password=admin123) -->
+      <div id="admin-login-section">
+        <form class="grid gap-4 max-w-sm" onsubmit="adminLogin(event)">
+          <input type="text" id="admin-username" placeholder="Tên đăng nhập" class="p-2 border rounded" required>
+          <input type="password" id="admin-password" placeholder="Mật khẩu" class="p-2 border rounded" required>
+          <button type="submit" class="bg-red-600 text-white p-2 rounded">Đăng nhập</button>
+        </form>
+      </div>
+      <!-- Khu vực quản trị xuất hiện sau đăng nhập -->
+      <div id="admin-panel" class="hidden">
+        <!-- Form Thêm Sản phẩm Laptop -->
+        <div class="mt-6 border p-4 rounded shadow bg-white mb-6">
+          <h3 class="text-xl font-semibold mb-2">Thêm Sản phẩm Laptop</h3>
+          <form onsubmit="addProduct(event, 'laptop')" class="grid gap-4">
+            <input type="text" id="laptop-name" placeholder="Tên sản phẩm" class="p-2 border rounded" required>
+            <select id="laptop-brand" class="p-2 border rounded" required>
+              <option value="">Chọn hãng</option>
+              <option value="Asus">Asus</option>
+              <option value="Dell">Dell</option>
+              <option value="HP">HP</option>
+            </select>
+            <input type="number" id="laptop-price" placeholder="Giá (tăng theo 100000)" step="100000" class="p-2 border rounded" required>
+            <input type="text" id="laptop-image" placeholder="Link hình ảnh" class="p-2 border rounded" required>
+            <!-- Các trường cấu hình Laptop -->
+            <input type="text" id="laptop-ram" placeholder="RAM (ví dụ: 8GB)" class="p-2 border rounded" required>
+            <input type="text" id="laptop-cpu" placeholder="CPU (ví dụ: Intel i5)" class="p-2 border rounded" required>
+            <input type="text" id="laptop-storage" placeholder="Ổ cứng (ví dụ: SSD 512GB)" class="p-2 border rounded" required>
+            <input type="text" id="laptop-screen" placeholder="Màn hình (ví dụ: 15.6 inch Full HD)" class="p-2 border rounded" required>
+            <button type="submit" class="bg-green-600 text-white p-2 rounded">Thêm Laptop</button>
+          </form>
+        </div>
+        <!-- Form Thêm Sản phẩm Phụ kiện -->
+        <div class="border p-4 rounded shadow bg-white">
+          <h3 class="text-xl font-semibold mb-2">Thêm Sản phẩm Phụ kiện</h3>
+          <form onsubmit="addProduct(event, 'accessory')" class="grid gap-4">
+            <input type="text" id="accessory-name" placeholder="Tên sản phẩm" class="p-2 border rounded" required>
+            <select id="accessory-brand" class="p-2 border rounded" required>
+              <option value="">Chọn hãng</option>
+              <option value="Logitech">Logitech</option>
+              <option value="DareU">DareU</option>
+            </select>
+            <input type="number" id="accessory-price" placeholder="Giá (tăng theo 100000)" step="100000" class="p-2 border rounded" required>
+            <select id="accessory-connect" class="p-2 border rounded" required>
+              <option value="">Chọn loại kết nối</option>
+              <option value="Có dây">Có dây</option>
+              <option value="Không dây">Không dây</option>
+            </select>
+            <input type="text" id="accessory-image" placeholder="Link hình ảnh" class="p-2 border rounded" required>
+            <button type="submit" class="bg-green-600 text-white p-2 rounded">Thêm Phụ kiện</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center p-4 bg-gray-300 mt-8">
+    <p>&copy; 2025 Cửa Hàng Laptop - All Rights Reserved.</p>
+  </footer>
+
+  <!-- SCRIPT: Xử lý các chức năng và lưu trữ qua localStorage -->
   <script>
-    const loginForm = document.getElementById("login-form");
-    const registerForm = document.getElementById("register-form");
-    const showRegisterFormLink = document.getElementById("show-register-form");
-    const showLoginFormLink = document.getElementById("show-login-form");
-    const loginTitle = loginForm.previousElementSibling;
-    const registerTitle = registerForm.previousElementSibling;
-    const loginSwitch = loginForm.nextElementSibling;
-    const registerSwitch = registerForm.nextElementSibling;
+    /***** SPA: Chuyển đổi trang *****/
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
 
-    showRegisterFormLink.addEventListener("click", () => {
-      loginForm.style.display = "none";
-      loginTitle.style.display = "none";
-      loginSwitch.style.display = "none";
+    /***** QUẢN LÝ SẢN PHẨM với localStorage *****/
+    // Danh sách sản phẩm toàn cục
+    let products = [];
 
-      registerForm.style.display = "block";
-      registerTitle.style.display = "block";
-      registerSwitch.style.display = "block";
-      document.querySelector(".auth-container h2").textContent =
-        "Đăng Ký Tài Khoản";
-    });
+    // Lưu mảng sản phẩm vào localStorage
+    function saveProducts() {
+      localStorage.setItem('products', JSON.stringify(products));
+    }
 
-    showLoginFormLink.addEventListener("click", () => {
-      registerForm.style.display = "none";
-      registerTitle.style.display = "none";
-      registerSwitch.style.display = "none";
-
-      loginForm.style.display = "block";
-      loginTitle.style.display = "block";
-      loginSwitch.style.display = "block";
-      document.querySelector(".auth-container h2").textContent = "Đăng Nhập";
-    });
-
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const errorMessage = document.getElementById("loginErrorMessage");
-
-      console.log("Thông tin đăng nhập:", { username, password });
-      alert("Đăng nhập (giao diện)! Bạn cần backend để xử lý thực tế.");
-    });
-
-    registerForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      const username = document.getElementById("regUsername").value;
-      const email = document.getElementById("regEmail").value;
-      const password = document.getElementById("regPassword").value;
-      const confirmPassword =
-        document.getElementById("confirmPassword").value;
-      const errorMessage = document.getElementById("registerErrorMessage");
-
-      if (password !== confirmPassword) {
-        errorMessage.textContent = "Mật khẩu không khớp.";
-        return;
+    // Load mảng sản phẩm từ localStorage khi trang khởi động
+    function loadProducts() {
+      const saved = localStorage.getItem('products');
+      if (saved) {
+        products = JSON.parse(saved);
       }
+      renderProducts();
+    }
 
-      console.log("Thông tin đăng ký:", { username, email, password });
-      alert("Đăng ký (giao diện)! Bạn cần backend để xử lý thực tế.");
-    });
+    // Render danh sách sản phẩm lên trang chủ
+    function renderProducts() {
+      const container = document.getElementById("products-container");
+      container.innerHTML = "";
+      products.forEach(product => {
+        let html = "";
+        if (product.type === "laptop") {
+          html = `
+            <div class="product-item border p-4 rounded shadow" data-type="laptop" data-brand="${product.brand}">
+              <h2 class="text-xl font-bold">${product.name}</h2>
+              <img src="${product.image}" alt="${product.name}" class="w-full mt-2 rounded">
+              <p class="mt-2">Hãng: ${product.brand}</p>
+              <p>Giá: <span class="price" data-price="${product.price}">${product.price.toLocaleString()}đ</span></p>
+              <p>Cấu hình: ${product.cpu}, ${product.ram}, ${product.storage}, ${product.screen}</p>
+              <button class="bg-blue-600 text-white p-2 rounded mt-2" onclick="addToCart('${product.name}', ${product.price})">Thêm vào giỏ</button>
+              <button class="bg-red-500 text-white p-2 rounded mt-2 admin-delete" onclick="deleteStoredProduct('${product.name}')">Xóa sản phẩm</button>
+            </div>`;
+        } else if (product.type === "accessory") {
+          html = `
+            <div class="product-item border p-4 rounded shadow" data-type="accessory" data-brand="${product.brand}">
+              <h2 class="text-xl font-bold">${product.name}</h2>
+              <img src="${product.image}" alt="${product.name}" class="w-full mt-2 rounded">
+              <p class="mt-2">Hãng: ${product.brand}</p>
+              <p>Giá: <span class="price" data-price="${product.price}">${product.price.toLocaleString()}đ</span></p>
+              <p>Kết nối: ${product.connect}</p>
+              <button class="bg-blue-600 text-white p-2 rounded mt-2" onclick="addToCart('${product.name}', ${product.price})">Thêm vào giỏ</button>
+              <button class="bg-red-500 text-white p-2 rounded mt-2 admin-delete" onclick="deleteStoredProduct('${product.name}')">Xóa sản phẩm</button>
+            </div>`;
+        }
+        container.innerHTML += html;
+      });
+    }
+
+    /***** Thêm sản phẩm từ form Admin *****/
+    function addProduct(event, type) {
+      event.preventDefault();
+      let newProduct = {};
+      if (type === "laptop") {
+        newProduct = {
+          name: document.getElementById("laptop-name").value,
+          brand: document.getElementById("laptop-brand").value,
+          price: parseInt(document.getElementById("laptop-price").value),
+          image: document.getElementById("laptop-image").value,
+          ram: document.getElementById("laptop-ram").value,
+          cpu: document.getElementById("laptop-cpu").value,
+          storage: document.getElementById("laptop-storage").value,
+          screen: document.getElementById("laptop-screen").value,
+          type: "laptop"
+        };
+      } else if (type === "accessory") {
+        newProduct = {
+          name: document.getElementById("accessory-name").value,
+          brand: document.getElementById("accessory-brand").value,
+          price: parseInt(document.getElementById("accessory-price").value),
+          connect: document.getElementById("accessory-connect").value,
+          image: document.getElementById("accessory-image").value,
+          type: "accessory"
+        };
+      }
+      // Thêm sản phẩm mới vào mảng và lưu vào localStorage
+      products.push(newProduct);
+      saveProducts();
+      renderProducts();
+      alert("Thêm sản phẩm thành công!");
+      event.target.reset();
+    }
+
+    // Xóa sản phẩm (dựa theo tên sản phẩm, bạn có thể thay đổi logics nếu cần)
+    function deleteStoredProduct(productName) {
+      if (confirm("Bạn có chắc muốn xóa sản phẩm này không?")) {
+        products = products.filter(p => p.name !== productName);
+        saveProducts();
+        renderProducts();
+      }
+    }
+
+    /***** Tìm kiếm & Lọc sản phẩm *****/
+    function filterProducts() {
+      const keyword = document.getElementById("searchInput").value.toLowerCase();
+      const brand = document.getElementById("brandFilter").value.toLowerCase();
+      const type = document.getElementById("typeFilter").value.toLowerCase();
+      document.querySelectorAll(".product-item").forEach(item => {
+        const name = item.querySelector("h2").textContent.toLowerCase();
+        const itemBrand = item.getAttribute("data-brand").toLowerCase();
+        const itemType = item.getAttribute("data-type").toLowerCase();
+        if ((name.indexOf(keyword) !== -1 || keyword === "") &&
+            (itemBrand === brand || brand === "") &&
+            (itemType === type || type === "")) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+    function filterProductsByType(type) {
+      document.getElementById("typeFilter").value = type;
+      filterProducts();
+    }
+    function resetFilters() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("brandFilter").value = "";
+      document.getElementById("typeFilter").value = "";
+      filterProducts();
+    }
+
+    /***** QUẢN LÝ GIỎ HÀNG & THANH TOÁN *****/
+    let cart = [];
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if(existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+    }
+    function updateCart() {
+      const cartItems = document.getElementById("cart-items");
+      const cartCount = document.getElementById("cart-count");
+      let total = 0;
+      cartItems.innerHTML = "";
+      cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        cartItems.innerHTML += `
+          <div class="flex justify-between items-center border-b py-2">
+            <span>${item.name} (x${item.qty}) - ${item.price.toLocaleString()}đ</span>
+            <div>
+              <button class="bg-blue-500 text-white px-2 py-1 rounded" onclick="changeQty(${index}, -1)">-</button>
+              <button class="bg-blue-500 text-white px-2 py-1 rounded" onclick="changeQty(${index}, 1)">+</button>
+              <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="removeCartItem(${index})">X</button>
+            </div>
+          </div>`;
+      });
+      document.getElementById("cart-total").innerText = total.toLocaleString();
+      cartCount.innerText = cart.length;
+    }
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if(cart[index].qty <= 0) cart.splice(index, 1);
+      updateCart();
+    }
+    function removeCartItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    /***** ADMIN: Đăng nhập & Quản trị Sản phẩm *****/
+    let adminLoggedIn = false;
+    function adminLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById("admin-username").value;
+      const password = document.getElementById("admin-password").value;
+      if(username === "admin" && password === "admin123") {
+        adminLoggedIn = true;
+        document.getElementById("admin-login-section").classList.add("hidden");
+        document.getElementById("admin-panel").classList.remove("hidden");
+        document.body.classList.add("admin-logged");
+        alert("Đăng nhập Admin thành công!");
+      } else {
+        alert("Sai tên đăng nhập hoặc mật khẩu!");
+      }
+    }
+
+    /***** KHI TRANG LOAD *****/
+    window.onload = function() {
+      loadProducts();
+    }
   </script>
 </body>
 </html>
