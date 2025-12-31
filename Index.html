@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Raptor Skateboards – Built for the Streets</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<style>
+/* ================= ROOT ================= */
+:root{
+    --primary:#6b001d;
+    --bg:#f3d6dc;
+    --dark:#111;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:#111;
+    line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+header{
+    max-width:1200px;
+    margin:40px auto;
+    background:var(--primary);
+    border-radius:32px;
+    padding:40px 20px;
+    text-align:center;
+    color:#fff;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    gap:32px;
+}
+
+nav a{color:#fff;text-decoration:none;font-size:14px;}
+
+/* ================= HERO ================= */
+.hero{
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+    border-radius:32px;
+    overflow:hidden;
+}
+
+.hero img{width:100%;height:520px;object-fit:cover;}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    pointer-events:none;
+}
+
+.hero-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    z-index:2;
+}
+
+.hero-content h2{font-size:40px;margin-bottom:20px;}
+.hero-content p{max-width:600px;margin-bottom:30px;}
+
+.hero-btns{display:flex;gap:20px;}
+
+.btn{
+    padding:14px 36px;
+    border-radius:30px;
+    font-size:14px;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.btn-primary{background:#fff;color:var(--primary);}
+.btn-outline{border:2px solid #fff;color:#fff;}
+.btn-primary:hover,.btn-outline:hover{transform:translateY(-4px);}
+
+/* ================= SECTION ================= */
+.section{
+    max-width:1200px;
+    margin:90px auto;
+    padding:0 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:32px;
+    color:var(--primary);
+    margin-bottom:20px;
+}
+
+.section-desc{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 50px;
+}
+
+/* ================= PRODUCTS ================= */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.product{
+    background:#fff;
+    border-radius:24px;
+    padding:25px;
+    transition:.4s;
+}
+
+.product:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.product img{width:100%;border-radius:16px;margin-bottom:15px;}
+.price{font-weight:600;margin-bottom:16px;}
+
+/* ================= EVENT ================= */
+.event{
+    background:var(--primary);
+    color:#fff;
+    border-radius:32px;
+    padding:80px 20px;
+    text-align:center;
+}
+
+.event-box{
+    background:#fff;
+    color:#111;
+    max-width:520px;
+    margin:40px auto 0;
+    padding:40px;
+    border-radius:32px;
+}
+
+.event-box input{
+    width:100%;
+    padding:14px;
+    border-radius:30px;
+    border:1px solid #ccc;
+    margin-bottom:15px;
+}
+/* ================= CONTACT FOOTER ================= */
+.contact-footer{
+    background:#e8c9d2;
+    margin-top:80px;
+    padding:60px 20px;
+}
+
+.contact-container{
+    max-width:1200px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:40px;
+}
+
+.contact-left h2{
+    color:#6b001d;
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.contact-left p{
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.contact-info{
+    margin-top:20px;
+    font-size:14px;
+}
+
+.contact-info strong{
+    display:block;
+    margin-bottom:6px;
+    color:#6b001d;
+}
+
+.contact-map iframe{
+    width:100%;
+    height:260px;
+    border-radius:24px;
+    border:0;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .contact-container{
+        grid-template-columns:1fr;
+    }
+	
+	/* ===== SOCIAL ICONS ===== */
+.social-icons{
+    display:flex;
+    gap:16px;
+    margin-top:24px;
+}
+
+.social-icons a{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#6b001d;
+    color:#fff;
+    font-size:18px;
+    transition:all .3s ease;
+}
+
+.social-icons a:hover{
+    background:#000;
+    transform:translateY(-4px) scale(1.05);
+}
+
+.success{color:green;font-weight:600;display:none}
+
+/* ================= FOOTER ================= */
+footer{text-align:center;padding:40px 0;font-size:13px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Raptor Skateboards — Built for the Streets</h1>
+<nav>
+<a href="#products">Shop</a>
+<a href="#event">Event</a>
+<a href="#login">Login</a>
+</nav>
+</header>
+
+<section class="hero">
+<img src="https://img.pikbest.com/origin/10/52/02/14BpIkbEsTeHN.jpg!w700wp">
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+<h2>Built for the Streets. Designed to Perform.</h2>
+<p>Premium skateboards crafted for real street riders.</p>
+<div class="hero-btns">
+<a href="#products" class="btn btn-primary">Shop Now</a>
+<a href="#event" class="btn btn-outline">Join Event</a>
+</div>
+</div>
+</section>
+
+<section class="section" id="products">
+    <h2 class="section-title">Best Selling Skateboards</h2>
+    <p class="section-desc">Choose your ride and hit the streets.</p>
+
+    <div class="products">
+        <div class="product">
+            <img src="https://copilot.microsoft.com/th/id/BCO.4cde01e3-07b7-4ff7-8adf-7ba5897f65e0.png">
+            <h3>Raptor X Pro</h3>
+            <p>Advanced performance skateboard for street pros.</p>
+            <div class="price">$129</div>
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+
+        <div class="product">
+            <img src="https://copilot.microsoft.com/th/id/BCO.7703e902-d585-440c-98d4-728c85e0700a.png">
+            <h3>Raptor Street Edition</h3>
+            <p>Perfect for beginners and daily riders.</p>
+            <div class="price">$99</div>
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+
+        <div class="product">
+            <img src="https://copilot.microsoft.com/th/id/BCO.e6169ce9-3967-4a83-bdf5-0b2152a081da.png">
+            <h3>Raptor Urban Cruiser</h3>
+            <p>Smooth city cruising and casual tricks.</p>
+            <div class="price">$109</div>
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+    </div>
+</section>
+
+<section class="event" id="event">
+<h2>Raptor Skateboarding Event 2025</h2>
+<p>Register to join our official skate event</p>
+
+<div class="event-box">
+<button class="btn btn-primary" onclick="googleLogin()">Login with Google</button>
+<p id="userInfo"></p>
+
+<form id="eventForm">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email" required>
+<button class="btn btn-primary">Register Event</button>
+</form>
+
+<p class="success" id="success">Registered successfully!</p>
+</div>
+</section>
+
+<section class="contact-footer">
+    <div class="contact-container">
+
+        <!-- LEFT -->
+        <div class="contact-left">
+            <h2>Scaters — Where Passion Meets Performance.</h2>
+
+            <div class="contact-info">
+                <strong>Email</strong>
+                <p>Khot@tpb.com.vn</p>
+
+                <strong>Address</strong>
+<p>
+    <a 
+      href="https://www.google.com/maps?q=57+Lý+Thường+Kiệt+Hoàn+Kiếm+Hà+Nội"
+      target="_blank"
+      style="color:#000;text-decoration:underline;">
+        57 Lý Thường Kiệt, P.Trần Hưng Đạo,<br>
+        Q.Hoàn Kiếm, TP.Hà Nội
+    </a>
+</p>
+            </div>
+			<div class="social-icons">
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.tiktok.com" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+    </a>
+
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+</div>
+        </div>
+
+        <!-- MAP -->
+        <div class="contact-map">
+            <iframe 
+                src="https://www.google.com/maps?q=57%20Lý%20Thường%20Kiệt%20Hoàn%20Kiếm%20Hà%20Nội&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+</section>
+
+<footer id="login">
+© 2025 Raptor Skateboards
+</footer>
+
+<script>
+/* ===== FIREBASE ===== */
+firebase.initializeApp({
+  apiKey:"YOUR_FIREBASE_API_KEY",
+  authDomain:"YOUR_PROJECT.firebaseapp.com"
+});
+const auth=firebase.auth();
+
+function googleLogin(){
+ const provider=new firebase.auth.GoogleAuthProvider();
+ auth.signInWithPopup(provider).then(res=>{
+   document.getElementById("userInfo").innerText="Hello "+res.user.displayName;
+ });
+}
+
+/* ===== EVENT → GOOGLE SHEET ===== */
+document.getElementById("eventForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ fetch("YOUR_GOOGLE_SCRIPT_URL",{
+  method:"POST",
+  body:JSON.stringify({
+   name:e.target[0].value,
+   email:e.target[1].value
+  })
+ });
+ document.getElementById("success").style.display="block";
+ e.target.reset();
+});
+</script>
+
+</body>
+</html>
